@@ -36,23 +36,24 @@ El sistema estará disponible en:
 
     Frontend: http://localhost
 
-    API Documentation (Swagger): http://localhost:8000/docs
+    Backend: http://localhost:8000
 
 📂 Estructura del Proyecto
-Plaintext
-
+.
 ├── backend/
-│   ├── main.py            # Lógica central y API
-│   ├── Dockerfile         # Receta del contenedor backend
-│   ├── requirements.txt   # Dependencias de Python
-│   ├── .env               # Variables de configuración
+│   ├── main.py                # Servidor FastAPI y lógica de identidades
+│   ├── Dockerfile             # Configuración del contenedor de Python
+│   ├── requirements.txt       # Librerías (fastapi, uvicorn, python-dotenv, etc.)
 │   ├── test/
-│   │   └── test.py        # Pruebas unitarias de identidad
-│   └── results/           # CSVs y Logs generados (Persistentes)
+│   │   └── test.py            # Pruebas unitarias (Normalización, Duplicados)
+│   └── results/               # Salida de datos (Persistente vía Docker Volumes)
+│       ├── execution.log      # Registro de auditoría de procesos
+│       └── contractors.csv    # Reporte final de identidades generadas
 ├── frontend/
-│   ├── index.html         # Interfaz de usuario
-│   └── Dockerfile         # Servidor Nginx
-└── docker-compose.yml     # Orquestador de servicios
+│   ├── index.html             # Interfaz de usuario (Vanilla JS)
+│   └── Dockerfile             # Configuración del servidor Nginx
+├── docker-compose.yml         # Orquestador de microservicios
+└── .gitignore                 # Archivos excluidos del repositorio (Logs, .env)
 
 🛡️ Enfoque en Seguridad e Integridad
 
