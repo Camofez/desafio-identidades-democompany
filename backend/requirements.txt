@@ -1,0 +1,7 @@
+# Add runtime dependencies here, for example:
+requests>=2.31.0
+fastapi
+uvicorn
+unicodedata2
+pytest
+# Add dev/test dependencies to `dev-requirements.txt` or `pyproject.toml`

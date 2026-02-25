@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DemoCompany - Panel de Control</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; padding: 40px; background-color: #f4f7f6; }
+        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 1000px; margin: auto; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #27ae60; padding-bottom: 10px; }
+        button { padding: 12px 24px; background-color: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; display: none; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #2c3e50; color: white; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Gestión de correos corporativos</h1>
+        <p>Habilite a los contratistas externos para acceder a servicios digitales corporativos generando correos electrónicos internos.</p>
+        <button type="button" id="btnEjecutar">Generar Accesos Corporativos</button>
+        <p id="status"></p>
+        <table id="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Correo Original</th>
+                    <th>Empresa</th>
+                    <th>Ciudad</th>
+                    <th>Email Corporativo</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo"></tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('btnEjecutar').addEventListener('click', async () => {
+            const status = document.getElementById('status');
+            const tabla = document.getElementById('tabla');
+            status.innerText = "Conectando con el backend de Python...";
+
+            try {
+                const res = await fetch("http://127.0.0.1:8000/process-contractors");
+                const result = await res.json();
+
+                if (result.status === "success") {
+                    const cuerpo = document.getElementById('cuerpo');
+                    cuerpo.innerHTML = result.data.map(u => `
+                        <tr>
+                            <td>${u['Nombre completo']}</td>
+                            <td>${u['Teléfono']}</td>
+                            <td>${u['Correo electrónico original']}</td>
+                            <td>${u['Empresa para la cual trabaja']}</td>
+                            <td>${u['Ciudad']}</td>
+                            <td><strong>${u['Correo corporativo generado']}</strong></td>
+                        </tr>
+                    `).join('');
+                    tabla.style.display = "table";
+                    status.innerText = "✅ Proceso finalizado. CSV y Logs generados en la carpeta /backend.";
+                }
+            } catch (e) {
+                status.innerText = "❌ Error: Verifique que el servidor FastAPI esté corriendo.";
+            }
+        });
+    </script>
+</body>
+</html>
