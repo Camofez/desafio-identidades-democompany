@@ -40,20 +40,20 @@ El sistema estará disponible en:
 
 📂 Estructura del Proyecto
 .
-├── backend/
-│   ├── main.py                # Servidor FastAPI y lógica de identidades
-│   ├── Dockerfile             # Configuración del contenedor de Python
-│   ├── requirements.txt       # Librerías (fastapi, uvicorn, python-dotenv, etc.)
-│   ├── test/
-│   │   └── test.py            # Pruebas unitarias (Normalización, Duplicados)
-│   └── results/               # Salida de datos (Persistente vía Docker Volumes)
-│       ├── execution.log      # Registro de auditoría de procesos
-│       └── contractors.csv    # Reporte final de identidades generadas
-├── frontend/
-│   ├── index.html             # Interfaz de usuario (Vanilla JS)
-│   └── Dockerfile             # Configuración del servidor Nginx
-├── docker-compose.yml         # Orquestador de microservicios
-└── .gitignore                 # Archivos excluidos del repositorio (Logs, .env)
+    ├── backend/
+    │   ├── main.py                # Servidor FastAPI y lógica de identidades
+    │   ├── Dockerfile             # Configuración del contenedor de Python
+    │   ├── requirements.txt       # Librerías (fastapi, uvicorn, python-dotenv, etc.)
+    │   ├── test/
+    │   │   └── test.py            # Pruebas unitarias (Normalización, Duplicados)
+    │   └── results/               # Salida de datos (Persistente vía Docker Volumes)
+    │       ├── execution.log      # Registro de auditoría de procesos
+    │       └── contractors.csv    # Reporte final de identidades generadas
+    ├── frontend/
+    │   ├── index.html             # Interfaz de usuario (Vanilla JS)
+    │   └── Dockerfile             # Configuración del servidor Nginx
+    ├── docker-compose.yml         # Orquestador de microservicios
+    └── .gitignore                 # Archivos excluidos del repositorio (Logs, .env)
 
 🛡️ Enfoque en Seguridad e Integridad
 
