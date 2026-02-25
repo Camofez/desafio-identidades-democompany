@@ -39,7 +39,6 @@ El sistema estará disponible en:
     Backend: http://localhost:8000
 
 📂 Estructura del Proyecto
-.
     ├── backend/
     │   ├── main.py                # Servidor FastAPI y lógica de identidades
     │   ├── Dockerfile             # Configuración del contenedor de Python
